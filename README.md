@@ -76,9 +76,13 @@ The chart compares customer status and the training/test split. Values are recor
 
 ## Interactive charts
 
-For hover highlighting and live value tooltips, open the [interactive customer churn dashboard](https://pallasivasai.github.io/rick/). The dashboard includes keyboard focus support as well.
+The charts embedded in this README are static previews because GitHub does not run custom JavaScript or hover interactions inside README images. To explore the same customer statistics interactively, use the separate dashboard:
 
-**One-time GitHub Pages setup:** In the repository, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. The workflow in `.github/workflows/pages.yml` will then publish the dashboard automatically after a push to `main`.
+**[Open the interactive customer churn dashboard](https://pallasivasai.github.io/rick/)**
+
+In the dashboard, move your mouse over a pie slice or bar to highlight it and display its customer count and percentage. Keyboard users can focus chart elements to view the same details.
+
+**One-time publishing setup:** Open [Repository Settings → Pages](https://github.com/pallasivasai/rick/settings/pages). Under **Build and deployment**, set **Source** to **GitHub Actions**. The workflow at `.github/workflows/pages.yml` will publish the dashboard. Once its Actions run succeeds, the dashboard link above will open the live interactive page.
 
 ## Customer churn pie chart
 
@@ -172,7 +176,13 @@ flowchart TD
 rick/
 ├── .github/
 │   └── workflows/
-│       └── ci.yml
+│       ├── ci.yml
+│       └── pages.yml
+├── assets/
+│   ├── customer-dataset-statistics.svg
+│   └── customer-churn-pie-and-bar.svg
+├── docs/
+│   └── index.html
 ├── tests/
 │   └── test_pipeline.py
 ├── .gitignore
