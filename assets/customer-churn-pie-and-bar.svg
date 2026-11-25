@@ -5,12 +5,12 @@
   <g font-family="Arial, Helvetica, sans-serif" fill="#171717">
     <text x="32" y="43" font-size="31" font-weight="600">A</text>
     <text x="505" y="43" font-size="31" font-weight="600">B</text>
-    <text x="245" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Churn Distribution</text>
-    <text x="700" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Count</text>
+    <text x="250" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Churn Distribution</text>
+    <text x="730" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Count</text>
   </g>
   <g>
-    <path d="M 250 220 L 250 80 A 140 140 0 1 1 166.7 332.5 Z" fill="#17518d" stroke="#ffffff" stroke-width="1.5"/>
-    <path d="M 250 220 L 166.7 332.5 A 140 140 0 0 1 250 80 Z" fill="#ff654f" stroke="#ffffff" stroke-width="1.5" transform="rotate(94.536 250 220)"/>
+    <path d="M 250 220 L 250 80 A 140 140 0 1 1 110.6 231.1 Z" fill="#17518d" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M 250 220 L 110.6 231.1 A 140 140 0 0 1 250 80 Z" fill="#ff654f" stroke="#ffffff" stroke-width="1.5"/>
   </g>
   <g font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#222">
     <rect x="35" y="145" width="13" height="13" fill="#17518d"/><text x="57" y="157">Retained — 3,687 (73.74%)</text>
