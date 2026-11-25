@@ -54,19 +54,11 @@ Customer churn directly affects recurring revenue. This project builds a reprodu
 
 ### Visual statistics
 
-These bars show the default generated dataset at a glance. Each bar represents 100% of the 5,000 synthetic records.
+The chart compares customer status and the training/test split. Values are record counts from the default synthetic dataset.
 
-| Measure | Visual | Share |
-|:---|:---|---:|
-| Retained customers | `███████████████░░░░░` | **73.74%** |
-| Churned customers | `█████░░░░░░░░░░░░░░░` | **26.26%** |
-
-The train/test split is:
-
-| Dataset portion | Visual | Records |
-|:---|:---|---:|
-| Training set | `████████████████░░░░` | **4,000 (80%)** |
-| Test set | `████░░░░░░░░░░░░░░░░` | **1,000 (20%)** |
+<div align="center">
+  <img src="assets/customer-dataset-statistics.svg" alt="Bar chart showing retained, churned, training, and testing record counts" width="760" />
+</div>
 
 ### Dataset feature overview
 
