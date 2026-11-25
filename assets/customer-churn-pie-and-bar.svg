@@ -1,6 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="980" height="440" viewBox="0 0 980 440" role="img" aria-labelledby="title desc">
   <title id="title">Customer churn distribution: pie chart and bar chart</title>
   <desc id="desc">Panel A shows 3,687 retained customers, 73.74 percent, and 1,313 churned customers, 26.26 percent. Panel B shows the same counts as vertical bars.</desc>
+  <style>
+    .slice, .bar { transition: filter 160ms ease, opacity 160ms ease, stroke-width 160ms ease; cursor: pointer; }
+    .slice:hover { filter: drop-shadow(0 3px 5px #77777788); stroke: #111111; stroke-width: 3.5; }
+    .bar:hover { filter: drop-shadow(0 3px 5px #77777788); opacity: 0.78; stroke: #111111; stroke-width: 2.5; }
+    @media (prefers-reduced-motion: reduce) { .slice, .bar { transition: none; } }
+  </style>
   <rect width="980" height="440" fill="#ffffff"/>
   <g font-family="Arial, Helvetica, sans-serif" fill="#171717">
     <text x="32" y="43" font-size="31" font-weight="600">A</text>
@@ -9,8 +15,8 @@
     <text x="730" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Count</text>
   </g>
   <g>
-    <path d="M 250 220 L 250 80 A 140 140 0 1 1 110.6 231.1 Z" fill="#17518d" stroke="#ffffff" stroke-width="1.5"/>
-    <path d="M 250 220 L 110.6 231.1 A 140 140 0 0 1 250 80 Z" fill="#ff654f" stroke="#ffffff" stroke-width="1.5"/>
+    <path class="slice" d="M 250 220 L 250 80 A 140 140 0 1 1 110.6 231.1 Z" fill="#17518d" stroke="#ffffff" stroke-width="1.5"><title>Retained: 3,687 customers (73.74%)</title></path>
+    <path class="slice" d="M 250 220 L 110.6 231.1 A 140 140 0 0 1 250 80 Z" fill="#ff654f" stroke="#ffffff" stroke-width="1.5"><title>Churned: 1,313 customers (26.26%)</title></path>
   </g>
   <g font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#222">
     <rect x="35" y="145" width="13" height="13" fill="#17518d"/><text x="57" y="157">Retained — 3,687 (73.74%)</text>
@@ -32,8 +38,8 @@
     <text x="510" y="354">0</text><text x="510" y="299">800</text><text x="510" y="244">1,600</text><text x="510" y="189">2,400</text><text x="510" y="134">3,200</text><text x="510" y="79">4,000</text>
   </g>
   <g>
-    <rect x="625" y="96.5" width="92" height="253.5" fill="#17518d" stroke="#123d69"/>
-    <rect x="780" y="259.7" width="92" height="90.3" fill="#ff654f" stroke="#c94737"/>
+    <rect class="bar" x="625" y="96.5" width="92" height="253.5" fill="#17518d" stroke="#123d69"><title>Retained: 3,687 customers (73.74%)</title></rect>
+    <rect class="bar" x="780" y="259.7" width="92" height="90.3" fill="#ff654f" stroke="#c94737"><title>Churned: 1,313 customers (26.26%)</title></rect>
   </g>
   <g font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#222" text-anchor="middle">
     <text x="671" y="86" font-weight="600">3,687</text>
