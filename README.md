@@ -74,6 +74,10 @@ The chart compares customer status and the training/test split. Values are recor
 | `late_payments` | Numeric | Recorded late-payment count |
 | `churn` | Binary target | 1 = churn, 0 = retained |
 
+## Interactive charts
+
+For hover highlighting and live value tooltips, open the [interactive customer churn dashboard](https://pallasivasai.github.io/rick/). The dashboard includes keyboard focus support as well.
+
 ## Customer churn pie chart
 
 The chart below presents the same synthetic dataset in two views: **A**, a pie chart showing the share of each customer class; and **B**, a bar chart showing the exact record counts. The default generator uses 5,000 rows and seed 42. These are synthetic demonstration values, not real-world customer results.
