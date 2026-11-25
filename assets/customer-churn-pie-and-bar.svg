@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="980" height="440" viewBox="0 0 980 440" role="img" aria-labelledby="title desc">
+  <title id="title">Customer churn distribution: pie chart and bar chart</title>
+  <desc id="desc">Panel A shows 3,687 retained customers, 73.74 percent, and 1,313 churned customers, 26.26 percent. Panel B shows the same counts as vertical bars.</desc>
+  <rect width="980" height="440" fill="#ffffff"/>
+  <g font-family="Arial, Helvetica, sans-serif" fill="#171717">
+    <text x="32" y="43" font-size="31" font-weight="600">A</text>
+    <text x="505" y="43" font-size="31" font-weight="600">B</text>
+    <text x="245" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Churn Distribution</text>
+    <text x="700" y="48" text-anchor="middle" font-size="21" font-weight="600">Customer Count</text>
+  </g>
+  <g>
+    <path d="M 250 220 L 250 80 A 140 140 0 1 1 166.7 332.5 Z" fill="#17518d" stroke="#ffffff" stroke-width="1.5"/>
+    <path d="M 250 220 L 166.7 332.5 A 140 140 0 0 1 250 80 Z" fill="#ff654f" stroke="#ffffff" stroke-width="1.5" transform="rotate(94.536 250 220)"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="15" fill="#222">
+    <rect x="35" y="145" width="13" height="13" fill="#17518d"/><text x="57" y="157">Retained — 3,687 (73.74%)</text>
+    <rect x="35" y="174" width="13" height="13" fill="#ff654f"/><text x="57" y="186">Churned — 1,313 (26.26%)</text>
+  </g>
+  <g stroke="#222" stroke-width="1.5" fill="none">
+    <line x1="520" y1="350" x2="940" y2="350"/>
+    <line x1="520" y1="75" x2="520" y2="350"/>
+  </g>
+  <g stroke="#d8d8d8" stroke-width="1">
+    <line x1="520" y1="350" x2="940" y2="350"/>
+    <line x1="520" y1="295" x2="940" y2="295"/>
+    <line x1="520" y1="240" x2="940" y2="240"/>
+    <line x1="520" y1="185" x2="940" y2="185"/>
+    <line x1="520" y1="130" x2="940" y2="130"/>
+    <line x1="520" y1="75" x2="940" y2="75"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="13" fill="#222" text-anchor="end">
+    <text x="510" y="354">0</text><text x="510" y="299">800</text><text x="510" y="244">1,600</text><text x="510" y="189">2,400</text><text x="510" y="134">3,200</text><text x="510" y="79">4,000</text>
+  </g>
+  <g>
+    <rect x="625" y="96.5" width="92" height="253.5" fill="#17518d" stroke="#123d69"/>
+    <rect x="780" y="259.7" width="92" height="90.3" fill="#ff654f" stroke="#c94737"/>
+  </g>
+  <g font-family="Arial, Helvetica, sans-serif" font-size="16" fill="#222" text-anchor="middle">
+    <text x="671" y="86" font-weight="600">3,687</text>
+    <text x="826" y="249" font-weight="600">1,313</text>
+    <text x="671" y="378">Retained</text>
+    <text x="826" y="378">Churned</text>
+  </g>
+  <text x="730" y="418" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#333">Customer status</text>
+</svg>
