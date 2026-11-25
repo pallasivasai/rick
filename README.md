@@ -1,98 +1,113 @@
-# Customer Churn Prediction and Revenue Retention Engine
+# Customer Churn Prediction & Revenue-Risk Analytics
 
-A machine learning pipeline that identifies subscription customers at high risk of cancellation 30 days in advance and prioritizes retention outreach based on Annual Recurring Revenue (ARR) exposure.
+A reproducible machine-learning project that estimates customer churn probability, translates risk into annual revenue exposure, and generates prioritized retention recommendations.
 
----
+> **Data notice:** The generator creates synthetic demonstration data. Results on synthetic data are not evidence of real-world business performance. Validate using representative, time-aware production data before making customer decisions.
 
-## 1. Business Problem
+## Capabilities
 
-Subscription businesses lose a substantial share of recurring revenue to preventable churn. Industry benchmarks consistently show that acquiring a new customer costs **5x to 7x more** than retaining an existing one, while reducing monthly churn by just **5%** can lift long-term profitability by **25% to 95%**.
+- Deterministic synthetic dataset generation.
+- Leakage-safe preprocessing and Random Forest training in one scikit-learn pipeline.
+- Stratified holdout evaluation with ROC-AUC, precision, recall, accuracy, and confusion matrix.
+- Customer scoring with Low / Medium / High risk levels.
+- Annual revenue exposure estimates and prioritized retention suggestions.
+- Exported model, metrics, full score list, and high-risk customer list.
+- Automated tests and GitHub Actions CI across Python 3.10–3.12.
 
-Most retention workflows are reactive—teams only intervene after a user clicks "Cancel," at which point save rates fall below **10%**. Without an early-warning scoring system, companies face two costly inefficiencies:
-- **Margin erosion:** Offering blanket discounts to loyal customers who would have renewed anyway.
-- **Silent attrition:** Failing to notice high-ARR accounts whose product usage has quietly stalled until renewal day.
+## Project structure
 
----
-
-## 2. System Architecture
-
-The pipeline ingests customer telemetry, billing history, and support logs to score churn probability and rank accounts by financial exposure.
-
-```mermaid
-graph TD
-    A[Customer Telemetry & Billing Data] --> B[generate_data.py]
-    B --> C[(customer_churn_data.csv)]
-    C --> D[Feature Engineering & Encoding]
-    D --> E[Random Forest Classifier]
-    E --> F{Churn Probability >= 0.65?}
-    F -- Yes --> G[Calculate Annual Revenue at Risk]
-    F -- No --> H[Standard Lifecycle Nurture]
-    G --> I[(high_risk_customers.csv)]
-    I --> J[CRM / Account Manager Outreach]
+```text
+rick/
+├── .github/workflows/ci.yml
+├── tests/test_pipeline.py
+├── .gitignore
+├── churn_model.py
+├── generate_data.py
+├── requirements.txt
+└── README.md
 ```
 
----
+## Quick start
 
-## 3. Validation Results and Financial Impact
+Python 3.10 or newer is recommended.
 
-Evaluated on a holdout test set from a 5,000-customer subscription cohort (baseline annual churn rate: **21.4%**, simulated ARR: **₹10.0 Cr**):
+```bash
+python -m venv .venv
 
-| Metric | Reactive Baseline | Predictive Engine | Net Impact |
-| :--- | :--- | :--- | :--- |
-| **ROC-AUC Score** | 0.50 (Random) | **0.88** | Strong class separation |
-| **Churn Recall (Top 20% Risk Tier)** | 20.0% | **74.5%** | **+54.5%** early detection |
-| **Monthly Churn Rate** | 1.78% | **1.24%** | **30.3%** relative reduction |
-| **Annual Revenue Retained** | ₹0 | **₹1.42 Cr** | **+14.2%** ARR preserved |
-| **Retention Campaign ROI** | 1.1x | **4.6x** | Targeted incentive spend |
+# Windows PowerShell
+.venv\Scripts\Activate.ps1
 
-### Revenue-at-Risk Prioritization Formula
+# macOS / Linux
+source .venv/bin/activate
 
-Rather than sorting accounts solely by raw churn probability, outreach priority is ranked by expected annual revenue loss:
-
-$$\text{ARR}_{\text{risk}} = \text{Monthly Charges} \times 12 \times P(\text{Churn})$$
-
-This ensures account managers contact a ₹10,000/month customer at 70% churn risk (₹84,000 at risk) ahead of a ₹1,500/month customer at 85% churn risk (₹15,300 at risk).
-
-### Cost-Benefit Economics
-- **False Negative Cost (Missed Churner):** Average loss of **₹68,400** in annual contract value plus replacement acquisition cost.
-- **False Positive Cost (Unnecessary Outreach):** **₹1,200** in customer success time or promotional credit—a **57:1 asymmetric payoff** favoring early intervention.
-
----
-
-## 4. Primary Churn Drivers
-
-Feature importance analysis across the Random Forest ensemble isolates four primary behavioral and billing signals:
-
-```mermaid
-pie title Share of Explained Churn Variance
-    "14-Day Usage Drop (>40%)" : 38
-    "Month-to-Month Contract" : 27
-    "Unresolved Support Tickets (>=3)" : 21
-    "Late Payments / Billing Friction" : 14
+python -m pip install -r requirements.txt
+python generate_data.py
+python churn_model.py
 ```
 
-1. **Usage Drop (>40% decline over 14 days):** Accounts for **38%** of explained variance and acts as the earliest leading indicator.
-2. **Month-to-Month Contracts:** Churn at **2.8x** the rate of customers locked into annual or two-year agreements.
-3. **Support Ticket Volume (>=3 tickets/month):** Increases cancellation likelihood by **3.4x**, especially when tickets remain unresolved past 48 hours.
-4. **Late Payments:** Strongest short-term predictor within 15 days of involuntary or voluntary churn.
+To customize the dataset, output directory, or decision threshold:
 
----
-
-## 5. Operational Retention Playbook
-
-Scored accounts are routed into distinct intervention tracks rather than receiving generic discount emails:
-
-```mermaid
-flowchart TD
-    Start[Scored Customer Account] --> CheckProb{Churn Prob >= 0.65?}
-    CheckProb -- No --> Low[Low Risk: Automated Product Tips]
-    CheckProb -- Yes --> CheckPay{Late Payments > 0?}
-    CheckPay -- Yes --> Billing[Billing Track: Grace Period & Card Retry]
-    CheckPay -- No --> CheckARR{Monthly Charges >= INR 7,500?}
-    CheckARR -- Yes --> VIP[VIP Track: Dedicated CSM Call + Custom Audit]
-    CheckARR -- No --> Contract[Growth Track: Annual Plan Upgrade Offer]
+```bash
+python generate_data.py --samples 8000 --seed 21 --output data/customers.csv
+python churn_model.py --data data/customers.csv --output-dir outputs/run-01 --threshold 0.60
 ```
 
-| Risk Segment | Trigger Criteria | Recommended Action | Target Owner |
-| :--- | :--- | :--- | :--- |
-| **Critical VIP** | `prob >= 0.65` and `MRR >= ₹7,5
+## Generated artifacts
+
+| Artifact | Description |
+| --- | --- |
+| `churn_model.joblib` | Trained preprocessing and classifier pipeline with feature and threshold metadata |
+| `metrics.json` | Holdout ROC-AUC, accuracy, precision, recall, confusion matrix, and class report |
+| `customer_churn_scores.csv` | All customers ranked by estimated annual revenue exposure |
+| `high_risk_customers.csv` | Customers at or above the configured probability threshold |
+
+## Model methodology
+
+Categorical values are one-hot encoded with unknown-category support. Numeric fields are median-imputed and standardized. Preprocessing is fitted only on the training split by keeping transformations and the classifier in a single pipeline.
+
+The project uses a stratified 80/20 train/test split and a fixed random seed for reproducibility. The default risk threshold is 0.65. Tune the threshold using validation data, intervention capacity, and the relative cost of false positives and false negatives; it is not a universal business setting.
+
+### Revenue exposure estimate
+
+`annual_revenue_at_risk_inr = monthly_charges_inr × 12 × churn_probability`
+
+This represents expected exposure, not guaranteed revenue loss or retained revenue. It does not model gross margin, contract duration, probability of successful intervention, or recovery outcomes.
+
+### Retention recommendations
+
+Illustrative recommendations are based on payment history, monthly charges, and contract type. They are decision-support suggestions only; require human review before customer outreach or incentives.
+
+## Data dictionary
+
+| Feature | Meaning |
+| --- | --- |
+| `customer_id` | Synthetic customer identifier |
+| `tenure_months` | Customer tenure in months |
+| `contract_type` | Month-to-Month, Annual, or Two-Year |
+| `monthly_charges_inr` | Monthly subscription amount in INR |
+| `login_days_last_30` | Days active in the last 30 days |
+| `usage_drop_pct` | Simulated usage decline percentage |
+| `support_tickets` | Support tickets recorded |
+| `late_payments` | Number of late payments |
+| `churn` | Target label: 1 = churn, 0 = retained |
+
+## Tests
+
+```bash
+python -m pip install pytest
+pytest -q
+```
+
+GitHub Actions runs tests on pushes and pull requests against Python 3.10, 3.11, and 3.12.
+
+## Responsible use and production checklist
+
+- Never present synthetic-data performance as a real customer result.
+- Evaluate with representative, time-aware data and monitor data drift.
+- Check probability calibration, subgroup performance, and error costs.
+- Protect customer information; do not commit personally identifiable data.
+- Keep retention decisions explainable and subject to human review.
+
+## License
+
+No license is currently specified. Add a license before granting reuse or redistribution permissions.

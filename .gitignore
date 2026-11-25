@@ -1,0 +1,9 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+artifacts/
+customer_churn_data.csv
+.DS_Store
