@@ -1,12 +1,20 @@
 import pandas as pd
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import roc_auc_score, classification_report
+from sklearn.metrics import classification_report, roc_auc_score
+from sklearn.model_selection import train_test_split
+
+
+def assign_retention_track(row):
+    if row["late_payments"] > 0:
+        return "Billing Friction", "Flexible billing date or 14-day grace window"
+    if row["monthly_charges_inr"] >= 7500:
+        return "Critical VIP", "1-on-1 onboarding review and workflow audit"
+    return "Contract Exposure", "15% discount incentive to switch to Annual billing"
+
 
 def run_pipeline():
     df = pd.read_csv("customer_churn_data.csv")
 
-    # One-hot encode contract_type
     X = pd.get_dummies(df.drop(columns=["customer_id", "churn"]), drop_first=True)
     y = df["churn"]
 
@@ -18,7 +26,7 @@ def run_pipeline():
         n_estimators=200,
         max_depth=8,
         class_weight="balanced",
-        random_state=42
+        random_state=42,
     )
     model.fit(X_train, y_train)
 
@@ -29,20 +37,27 @@ def run_pipeline():
     print("Classification Report:")
     print(classification_report(y_test, y_preds))
 
-    # Flag high-risk accounts for retention outreach
     test_results = df.loc[idx_test].copy()
     test_results["churn_probability"] = y_probs.round(3)
     test_results["annual_revenue_at_risk_inr"] = (
         test_results["monthly_charges_inr"] * 12 * test_results["churn_probability"]
     ).round(2)
 
-    high_risk = test_results[test_results["churn_probability"] >= 0.65].sort_values(
+    high_risk = test_results[test_results["churn_probability"] >= 0.65].copy()
+    tracks = high_risk.apply(assign_retention_track, axis=1)
+    high_risk["risk_segment"] = [t[0] for t in tracks]
+    high_risk["recommended_action"] = [t[1] for t in tracks]
+
+    high_risk = high_risk.sort_values(
         by="annual_revenue_at_risk_inr", ascending=False
     )
     high_risk.to_csv("high_risk_customers.csv", index=False)
 
     total_risk = high_risk["annual_revenue_at_risk_inr"].sum()
-    print(f"Flagged {len(high_risk)} high-risk accounts | Total Revenue at Risk: ₹{total_risk:,.2f}")
+    print(
+        f"Flagged {len(high_risk)} high-risk accounts | Total Revenue at Risk: ₹{total_risk:,.2f}"
+    )
+
 
 if __name__ == "__main__":
     run_pipeline()
