@@ -76,14 +76,11 @@ The chart compares customer status and the training/test split. Values are recor
 
 ## Customer churn pie chart
 
-The following chart shows the class distribution produced by the **default synthetic-data generator** (`5,000 rows`, `seed=42`). It is a reproducible dataset statistic, not a measured customer-population churn rate.
+The chart below presents the same synthetic dataset in two views: **A**, a pie chart showing the share of each customer class; and **B**, a bar chart showing the exact record counts. The default generator uses 5,000 rows and seed 42. These are synthetic demonstration values, not real-world customer results.
 
-```mermaid
-pie showData
-    title Synthetic customer churn distribution (5,000 records)
-    "Retained — 3,687 (73.74%)" : 3687
-    "Churned — 1,313 (26.26%)" : 1313
-```
+<div align="center">
+  <img src="assets/customer-churn-pie-and-bar.svg" alt="Customer churn pie chart and matching bar chart: 3,687 retained and 1,313 churned customers" width="900" />
+</div>
 
 | Customer class | Records | Share |
 |:---|---:|---:|
