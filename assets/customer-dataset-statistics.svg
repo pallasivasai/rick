@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="820" height="470" viewBox="0 0 820 470" role="img" aria-labelledby="title desc">
+  <title id="title">Customer churn and dataset split statistics</title>
+  <desc id="desc">A grouped vertical bar chart showing 3,687 retained customers, 1,313 churned customers, 4,000 training records, and 1,000 test records.</desc>
+  <rect width="820" height="470" fill="#f2f2f2"/>
+  <text x="410" y="38" text-anchor="middle" font-family="Arial, sans-serif" font-size="23" font-weight="600" fill="#222">Customer Dataset Statistics</text>
+  <rect x="92" y="68" width="680" height="315" fill="#fff" stroke="#b8b8b8"/>
+  <g font-family="Arial, sans-serif" font-size="13" fill="#333" text-anchor="end">
+    <text x="80" y="387">0</text><text x="80" y="313">1,000</text><text x="80" y="239">2,000</text><text x="80" y="165">3,000</text><text x="80" y="91">4,000</text>
+  </g>
+  <g stroke="#dedede" stroke-width="1">
+    <line x1="92" y1="383" x2="772" y2="383"/><line x1="92" y1="309" x2="772" y2="309"/><line x1="92" y1="235" x2="772" y2="235"/><line x1="92" y1="161" x2="772" y2="161"/><line x1="92" y1="87" x2="772" y2="87"/>
+  </g>
+  <text x="28" y="225" transform="rotate(-90 28 225)" text-anchor="middle" font-family="Arial, sans-serif" font-size="15" font-weight="600" fill="#222">Records</text>
+  <g font-family="Arial, sans-serif" font-size="14" fill="#222" text-anchor="middle">
+    <rect x="190" y="110.0" width="66" height="273" fill="#55a879" stroke="#333"/>
+    <text x="223" y="101" font-weight="600">3,687</text>
+    <rect x="266" y="285.8" width="66" height="97.2" fill="#e87979" stroke="#333"/>
+    <text x="299" y="277" font-weight="600">1,313</text>
+    <rect x="500" y="87" width="66" height="296" fill="#79a6d8" stroke="#333"/>
+    <text x="533" y="78" font-weight="600">4,000</text>
+    <rect x="576" y="309" width="66" height="74" fill="#e7ad58" stroke="#333"/>
+    <text x="609" y="300" font-weight="600">1,000</text>
+    <text x="223" y="407">Retained</text><text x="299" y="407">Churned</text>
+    <text x="533" y="407">Training</text><text x="609" y="407">Testing</text>
+    <text x="261" y="442" font-weight="600">Customer status</text>
+    <text x="571" y="442" font-weight="600">Train / test split</text>
+  </g>
+</svg>
