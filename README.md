@@ -52,6 +52,22 @@ Customer churn directly affects recurring revenue. This project builds a reprodu
 
 </div>
 
+### Visual statistics
+
+These bars show the default generated dataset at a glance. Each bar represents 100% of the 5,000 synthetic records.
+
+| Measure | Visual | Share |
+|:---|:---|---:|
+| Retained customers | `███████████████░░░░░` | **73.74%** |
+| Churned customers | `█████░░░░░░░░░░░░░░░` | **26.26%** |
+
+The train/test split is:
+
+| Dataset portion | Visual | Records |
+|:---|:---|---:|
+| Training set | `████████████████░░░░` | **4,000 (80%)** |
+| Test set | `████░░░░░░░░░░░░░░░░` | **1,000 (20%)** |
+
 ### Dataset feature overview
 
 | Feature | Data type | Description |
