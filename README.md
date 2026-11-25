@@ -78,6 +78,8 @@ The chart compares customer status and the training/test split. Values are recor
 
 For hover highlighting and live value tooltips, open the [interactive customer churn dashboard](https://pallasivasai.github.io/rick/). The dashboard includes keyboard focus support as well.
 
+**One-time GitHub Pages setup:** In the repository, open **Settings → Pages** and set **Build and deployment → Source** to **GitHub Actions**. The workflow in `.github/workflows/pages.yml` will then publish the dashboard automatically after a push to `main`.
+
 ## Customer churn pie chart
 
 The chart below presents the same synthetic dataset in two views: **A**, a pie chart showing the share of each customer class; and **B**, a bar chart showing the exact record counts. The default generator uses 5,000 rows and seed 42. These are synthetic demonstration values, not real-world customer results.
